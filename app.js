@@ -6,15 +6,15 @@ const session = require('express-session');
 const flash = require('connect-flash');
 require('dotenv').config();
 
-const index = require('/routes');
+const index = require('./routes');
 const connect = require('./schemas');
 
 const app = express();
 connect();
 
 app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', pug);
-app.set('prot', process.env.PORT || 8015);
+app.set('view engine', 'pug');
+app.set('port', process.env.PORT || 8015);
 
 app.use(morgan('dev'));
 app.use(express.static(path.join(__dirname, 'public')));

@@ -7,7 +7,9 @@ module.exports = () => {
   const connect = () => {
     (NODE_ENV  !== 'production') && mongoose.set('debug', true);
     mongoose.connect(MONGO_URL, {
-      dbName: 'nodeplace'
+      dbName: 'nodeplace',
+      useCreateIndex: true,
+      useNewUrlParser: true
     }, (error) => {
       (error) ? console.log('몽고디비 연결 에러', error) : console.log('몽고디비 연결 성공');
     });
