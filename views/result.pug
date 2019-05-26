@@ -1,7 +1,7 @@
 extends layout
 
 block content
-  h1= query = `검색결과(${results.length})`
+  h1= query + ' 검색 결과(' + results.length + ')'
   #map
   script.
     var positions = [];
@@ -22,10 +22,37 @@ block content
       });
 
       positions.forEach(function(pos) {
-        new google.maps.Marker({
+        var marker = new google.maps.Marker({
           position: { lat: pos.lat, lng: pos.lng },
           map: map,
           title: pos.name
+        });
+        var div = document.createElement('div');
+        var h1 = document.createElement('h1');
+        var button = document.createElement('button');
+        h1.textContent = pos.name;
+        button.classList.add('btn');
+        button.textContent = '즐겨찾기 추가';
+        button.onclick = function () {
+          var xhr = new XMLHttpRequest();
+          xhr.onload = () => {
+            (xhr.status === 200) && location.href = '/';
+          }
+          xhr.open('POST', '/location/' + pos.id + '/favorite');
+          xhr.setRequestHeader('Content-Type', 'application/json');
+          xhr.send(JSON.stringify({
+            name: pos.name,
+            lat: pos.lat,
+            lng: pos.lng
+          }));
+        };
+        div.appendChild(h1);
+        div.appendChild(button);
+        var infowindow = new google.maps.InfoWindow({
+          content: div
+        });
+        marker.addListener('click', function () {
+          infowindow.open(map, marker);
         });
       });
     }
@@ -33,5 +60,5 @@ block content
     async
     defer
     src="https://maps.googleapis.com/maps/api/js"
-      + "?key=" + key +"&callback=initMap"
+      + "?key= + key + &callback=initMap"
   )
