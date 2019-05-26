@@ -1,0 +1,37 @@
+{
+  "name": "node-place",
+  "version": "0.0.1",
+  "description": "구글 API를 사용한 장소 검색 서비스",
+  "main": "app.js",
+  "scripts": {
+    "start": "nodemon app"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yaso614/node-place.git"
+  },
+  "keywords": [
+    "node",
+    "google-maps"
+  ],
+  "author": "heming",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/yaso614/node-place/issues"
+  },
+  "homepage": "https://github.com/yaso614/node-place#readme",
+  "dependencies": {
+    "axios": "^0.18.0",
+    "connect-flash": "^0.1.1",
+    "cookie-parser": "^1.4.4",
+    "dotenv": "^8.0.0",
+    "express": "^4.17.0",
+    "express-session": "^1.16.1",
+    "mongoose": "^5.5.11",
+    "morgan": "^1.9.1",
+    "pug": "^2.0.3"
+  },
+  "devDependencies": {
+    "nodemon": "^1.19.1"
+  }
+}
