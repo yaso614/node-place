@@ -32,6 +32,11 @@ app.use(session({
 }));
 app.use(flash());
 
+app.use(function(req, res, next) {
+  res.locals.key = process.env.PLACES_API_KEY
+  next();
+});
+
 app.use('/', index);
 
 app.use((req, res, next) => {
