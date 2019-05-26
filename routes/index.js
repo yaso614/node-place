@@ -5,6 +5,7 @@ const googleMaps = require('@google/maps');
 const History = require('../schemas/history');
 
 const router = express.Router();
+
 const googleMapsClient = googleMaps.createClient({
   key: process.env.PLACES_API_KEY
 });
@@ -24,7 +25,7 @@ router.get('/autocomplete/:query', (req, res, next) => {
 });
 
 router.get('/search/:query', async (req, res, next) =>{
-  const googlePalces = util.promisify({ query: req.params.query });
+  const googlePlaces = util.promisify(googleMapsClient.places);
   try {
     const history = new History({ query: req.params.query });
     await history.save();
