@@ -1,0 +1,11 @@
+extend layout
+
+block content
+  h1= query = `검색결과(${result.length})`
+  if results
+    for result in results
+      div= result.formatted_address
+      div= JSON.stringify(result.geometry.location)
+      div= result.place.id
+      div= result.name
+      
